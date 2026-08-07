@@ -3,6 +3,8 @@ import { Menu, X } from "lucide-react";
 import logoMono from "@/assets/logo-mono.svg";
 
 const navLinks = [
+  { label: "Produtos", href: "/produtos" },
+  { label: "Catálogo de cores", href: "/produtos/carrinho" },
   { label: "Sobre a Mono", href: "/sobre" },
   { label: "Baixe o catálogo", href: "/downloads" },
 ];
