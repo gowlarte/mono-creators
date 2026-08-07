@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ForrosVinilicosBanner from "@/components/ForrosVinilicosBanner";
 import Hero from "@/components/Hero";
 import Diferenciais from "@/components/Diferenciais";
 import OqueEVinilico from "@/components/OqueEVinilico";
@@ -16,6 +17,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <ForrosVinilicosBanner />
       <Hero />
       <Diferenciais />
       <OqueEVinilico />

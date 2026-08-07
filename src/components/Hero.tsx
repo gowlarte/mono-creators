@@ -6,12 +6,12 @@ const Hero = () => {
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:justify-between gap-10 md:gap-8">
         {/* Left column — text */}
         <AnimateOnScroll className="flex flex-col items-center md:items-start text-center md:text-left md:w-[40%]">
-          <h1
+          <h2
             className="font-heading font-bold leading-[1.2] text-[#6B4426]"
             style={{ fontSize: "clamp(28px, 3vw, 42px)" }}
           >
             Dizem que o essencial é invisível aos olhos
-          </h1>
+          </h2>
           <p className="text-[16px] text-[#8B7B6B] font-body mt-4 md:block hidden leading-relaxed">
             Mas a nossa essência é inevitável. Revestimentos vinílicos para teto, forro e
             parede: a beleza da madeira e da pedra, com obra limpa e zero manutenção.
