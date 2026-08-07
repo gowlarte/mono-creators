@@ -91,11 +91,12 @@ const ProdutosListing = () => {
         <div className="absolute bottom-0 left-0 right-0 section-padding pb-10 lg:pb-14">
           <AnimateOnScroll>
             <h1 className="text-3xl lg:text-5xl font-display font-light text-background">
-              Nossos produtos
+              Catálogo de cores e texturas
             </h1>
             <div className="w-12 h-px bg-background/60 mt-3" />
-            <p className="text-sm font-body text-background/70 mt-2">
-              Escolha uma das nossas linhas
+            <p className="text-sm font-body text-background/70 mt-2 max-w-xl">
+              Navegue por todas as cores das nossas linhas vinílicas e selecione as
+              referências do seu projeto.
             </p>
           </AnimateOnScroll>
         </div>
@@ -134,7 +135,9 @@ const ProdutosListing = () => {
         <p className="text-xs font-body text-muted-foreground">
           <a href="/" className="hover:text-foreground transition-colors">Home</a>
           <span className="mx-2">›</span>
-          <span className="text-foreground">Produtos</span>
+          <a href="/produtos" className="hover:text-foreground transition-colors">Produtos</a>
+          <span className="mx-2">›</span>
+          <span className="text-foreground">Catálogo</span>
         </p>
 
         {activeCategory === "natureshell" && (

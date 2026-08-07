@@ -11,6 +11,7 @@ import ProdutoRipado from "./pages/ProdutoRipado";
 import ProdutoLiso from "./pages/ProdutoLiso";
 import ProdutoPedraFlexivel from "./pages/ProdutoPedraFlexivel";
 import ProdutosListing from "./pages/ProdutosListing";
+import ProdutosOverview from "./pages/ProdutosOverview";
 import ObrigadoCatalogo from "./pages/ObrigadoCatalogo";
 import ObrigadoOrcamento from "./pages/ObrigadoOrcamento";
 import NotFound from "./pages/NotFound";
@@ -29,7 +30,8 @@ const App = () => (
           <Route path="/orcamento" element={<Orcamento />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/downloads" element={<Downloads />} />
-          <Route path="/produtos" element={<ProdutosListing />} />
+          <Route path="/produtos" element={<ProdutosOverview />} />
+          <Route path="/produtos/carrinho" element={<ProdutosListing />} />
           <Route path="/produtos/ripado" element={<ProdutoRipado />} />
           <Route path="/produtos/liso" element={<ProdutoLiso />} />
           <Route path="/produtos/pedra-flexivel" element={<ProdutoPedraFlexivel />} />
