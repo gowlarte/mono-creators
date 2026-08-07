@@ -12,8 +12,9 @@ const Hero = () => {
           >
             Dizem que o essencial é invisível aos olhos
           </h1>
-          <p className="text-[16px] text-[#8B7B6B] font-body mt-4 md:block hidden">
-            Mas a nossa essência é inevitável.
+          <p className="text-[16px] text-[#8B7B6B] font-body mt-4 md:block hidden leading-relaxed">
+            Mas a nossa essência é inevitável. Revestimentos vinílicos para teto, forro e
+            parede: a beleza da madeira e da pedra, com obra limpa e zero manutenção.
           </p>
           {/* Mobile: subtitle + button rendered after octagon */}
           <a
@@ -36,8 +37,9 @@ const Hero = () => {
 
         {/* Mobile-only subtitle + button below octagon */}
         <div className="flex flex-col items-center md:hidden">
-          <p className="text-[16px] text-[#8B7B6B] font-body">
-            Mas a nossa essência é inevitável.
+          <p className="text-[16px] text-[#8B7B6B] font-body text-center leading-relaxed">
+            Mas a nossa essência é inevitável. Revestimentos vinílicos para teto, forro e
+            parede: a beleza da madeira e da pedra, com obra limpa e zero manutenção.
           </p>
           <a
             href="/produtos"
