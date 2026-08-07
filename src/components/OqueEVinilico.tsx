@@ -1,6 +1,6 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import { Link } from "react-router-dom";
-import imgRipado from "@/assets/produtos/ripado-amb-01.jpg";
+import imgRipado from "@/assets/produtos/ripado-amb-03.jpg";
 import imgLiso from "@/assets/produtos/liso-amb-02.jpg";
 
 const camadas = [
