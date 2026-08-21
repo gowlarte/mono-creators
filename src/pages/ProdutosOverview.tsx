@@ -9,7 +9,6 @@ import { ArrowRight } from "lucide-react";
 import heroImg from "@/assets/produtos/ripado-hero.jpg";
 import ripadoImg from "@/assets/produtos/ripado-ambientacao.jpg";
 import lisoImg from "@/assets/produtos/liso-ambientacao.jpg";
-import pedraImg from "@/assets/produtos/pedra-amb-02.jpg";
 
 const linhas = [
   {
@@ -29,15 +28,6 @@ const linhas = [
     descricao:
       "Acabamento contínuo e discreto, com veios impressos em alta definição. É a escolha para quem quer um teto de madeira uniforme, elegante e sem manutenção.",
     bullets: ["5 tonalidades de madeira", "Superfície lisa e uniforme", "Fácil limpeza com pano úmido"],
-  },
-  {
-    nome: "Lith Pedra Flexível",
-    image: pedraImg,
-    dimensao: "1200 × 600 mm",
-    href: "/produtos/pedra-flexivel",
-    descricao:
-      "Lâmina mineral flexível que reproduz a textura da pedra natural em peças leves e curváveis. Perfeita para paredes, colunas e fachadas internas com efeito escultórico.",
-    bullets: ["7 padrões minerais", "Flexível para superfícies curvas", "Peso reduzido"],
   },
 ];
 
@@ -69,7 +59,7 @@ const ProdutosOverview = () => {
         <div className="section-padding grid grid-cols-1 lg:grid-cols-3 gap-10">
           <AnimateOnScroll className="lg:col-span-2 space-y-5">
             <h2 className="text-2xl lg:text-3xl font-display font-light text-foreground">
-              Uma linha, três acabamentos, infinitas composições
+              Uma linha, dois acabamentos, infinitas composições
             </h2>
             <div className="w-16 h-px bg-mono-accent" />
             <p className="font-body text-base text-muted-foreground leading-relaxed">

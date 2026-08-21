@@ -14,6 +14,7 @@ import ambHero from "@/assets/produtos/liso-ambientacao.jpg";
 
 const ProdutoLiso = () => (
   <ProductPageLayout
+    linha="liso"
     title="Natureshell PVC Liso"
     subtitle="Forro Vinílico"
     heroImage={heroImg}

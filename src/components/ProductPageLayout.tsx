@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navbar from "./Navbar";
 import MonoFooter from "./MonoFooter";
 import AnimateOnScroll from "./AnimateOnScroll";
 import BentoGallery from "./BentoGallery";
-import { Button } from "./ui/button";
+import OpcoesDeCompra from "./OpcoesDeCompra";
+import type { LinhaId } from "@/data/marketplaces";
 
 interface ColorSwatch {
   name: string;
@@ -30,6 +32,8 @@ interface ProductPageLayoutProps {
   colors: ColorSwatch[];
   colorsTitle?: string;
   gallery?: GalleryImage[];
+  /** Resolve o anúncio de marketplace desta linha no bloco de compra. */
+  linha?: LinhaId;
 }
 
 const ProductPageLayout = ({
@@ -41,8 +45,19 @@ const ProductPageLayout = ({
   colors,
   colorsTitle = "Cores disponíveis",
   gallery = [],
+  linha,
 }: ProductPageLayoutProps) => {
   const navigate = useNavigate();
+  const { hash } = useLocation();
+
+  // Os cards do catálogo linkam para #comprar; no carregamento direto o próprio
+  // navegador rola, mas na navegação client-side o React Router não rola sozinho.
+  // Salto instantâneo de propósito: é o comportamento nativo de âncora, e um scroll
+  // suave de ~2400px atravessaria a página inteira em animação.
+  useEffect(() => {
+    if (hash !== "#comprar") return;
+    document.getElementById("comprar")?.scrollIntoView({ block: "start" });
+  }, [hash]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -162,25 +177,34 @@ const ProductPageLayout = ({
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 lg:py-28 bg-secondary text-secondary-foreground">
-        <div className="section-padding text-center space-y-6">
+      {/* Compra */}
+      <section id="comprar" className="py-20 lg:py-28 bg-secondary text-secondary-foreground scroll-mt-16">
+        <div className="section-padding space-y-8">
           <AnimateOnScroll>
-            <h2 className="text-3xl lg:text-5xl font-display font-light">
-              Solicite um orçamento
-            </h2>
-            <p className="text-sm lg:text-base font-body text-secondary-foreground/70 max-w-lg mx-auto mt-4">
-              Fale com nossa equipe e receba uma proposta personalizada para o
-              seu projeto.
+            <div className="text-center space-y-4 max-w-2xl mx-auto">
+              <h2 className="text-3xl lg:text-5xl font-display font-light">
+                Comprar {title}
+              </h2>
+              <p className="text-sm lg:text-base font-body text-secondary-foreground/70">
+                Disponível nas lojas oficiais MONO nos marketplaces.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll>
+            <OpcoesDeCompra linha={linha} tom="escuro" />
+          </AnimateOnScroll>
+
+          <AnimateOnScroll>
+            <p className="text-center text-sm font-body text-secondary-foreground/60">
+              Projeto grande ou obra?{" "}
+              <button
+                onClick={() => navigate("/orcamento")}
+                className="underline underline-offset-4 hover:text-secondary-foreground transition-colors"
+              >
+                Solicite um orçamento
+              </button>
             </p>
-            <Button
-              variant="mono"
-              size="lg"
-              className="mt-8 px-10 py-6 text-base"
-              onClick={() => navigate("/orcamento")}
-            >
-              Solicitar Orçamento
-            </Button>
           </AnimateOnScroll>
         </div>
       </section>

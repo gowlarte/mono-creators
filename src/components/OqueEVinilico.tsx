@@ -25,7 +25,7 @@ const OqueEVinilico = () => {
             <p className="text-base font-body text-muted-foreground leading-relaxed">
               O revestimento vinílico é uma placa de PVC de alta performance que recebe uma
               impressão decorativa e uma camada protetora, reproduzindo a beleza da madeira
-              natural e da pedra — sem os problemas dela. Ele é instalado por encaixe em
+              natural — sem os problemas dela. Ele é instalado por encaixe em
               tetos, forros e paredes, sobre gesso, laje, madeiramento ou perfis metálicos.
             </p>
             <p className="text-base font-body text-muted-foreground leading-relaxed">

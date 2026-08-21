@@ -14,6 +14,7 @@ import ambHero from "@/assets/produtos/ripado-ambientacao.jpg";
 
 const ProdutoRipado = () => (
   <ProductPageLayout
+    linha="ripado"
     title="Natureshell PVC Ripado"
     subtitle="Forro Vinílico"
     heroImage={heroImg}

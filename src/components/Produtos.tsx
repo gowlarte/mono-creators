@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import AnimateOnScroll from "./AnimateOnScroll";
 import tetoImg from "@/assets/produto-teto-vinilico.jpg";
 import forrosImg from "@/assets/produto-forros-pvc.jpg";
-import pedraImg from "@/assets/produto-pedra-flexivel.jpg";
 
 const products = [
   {
@@ -17,12 +16,6 @@ const products = [
     image: tetoImg,
     href: "/produtos/liso",
   },
-  {
-    title: "Lith Pedra Flexível",
-    description: "Lâmina mineral flexível para paredes, colunas e superfícies curvas.",
-    image: pedraImg,
-    href: "/produtos/pedra-flexivel",
-  },
 ];
 
 const Produtos = () => {
@@ -35,12 +28,12 @@ const Produtos = () => {
             <h2 className="text-3xl lg:text-4xl font-display font-light text-foreground">Descubra nossos produtos</h2>
             <div className="w-16 h-px bg-mono-accent mt-4" />
             <p className="font-body text-base text-muted-foreground leading-relaxed mt-5">
-              Três acabamentos vinílicos com a mesma tecnologia: placa de PVC com filme decorativo
+              Dois acabamentos vinílicos com a mesma tecnologia: placa de PVC com filme decorativo
               e proteção UV, instalada por encaixe em teto, forro e parede.
             </p>
           </div>
         </AnimateOnScroll>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {products.map((product) => (
             <AnimateOnScroll key={product.title}>
               <Link to={product.href} className="group block">

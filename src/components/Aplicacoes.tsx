@@ -1,7 +1,7 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import amb1 from "@/assets/produtos/ripado-amb-02.jpg";
 import amb2 from "@/assets/produtos/liso-amb-03.jpg";
-import amb3 from "@/assets/produtos/pedra-amb-01.jpg";
+import amb3 from "@/assets/produtos/ripado-amb-03.jpg";
 import amb4 from "@/assets/produtos/ripado-amb-04.jpg";
 
 const ambientes = [

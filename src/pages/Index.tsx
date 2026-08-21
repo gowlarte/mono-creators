@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
-import ForrosVinilicosBanner from "@/components/ForrosVinilicosBanner";
+import HeroSlider from "@/components/HeroSlider";
 import Hero from "@/components/Hero";
 import Diferenciais from "@/components/Diferenciais";
 import OqueEVinilico from "@/components/OqueEVinilico";
+import OndeComprarHome from "@/components/OndeComprarHome";
 import BeneficiosTecnicos from "@/components/BeneficiosTecnicos";
+import CamadasScroll from "@/components/CamadasScroll";
 import Produtos from "@/components/Produtos";
 import BannerTexturas from "@/components/BannerTexturas";
 import Aplicacoes from "@/components/Aplicacoes";
@@ -17,11 +19,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <ForrosVinilicosBanner />
+      <HeroSlider />
       <Hero />
       <Diferenciais />
       <OqueEVinilico />
+      <OndeComprarHome />
       <BeneficiosTecnicos />
+      <CamadasScroll />
       <Produtos />
       <BannerTexturas />
       <Aplicacoes />

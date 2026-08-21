@@ -14,7 +14,7 @@ const Hero = () => {
           </h2>
           <p className="text-[16px] text-[#8B7B6B] font-body mt-4 md:block hidden leading-relaxed">
             Mas a nossa essência é inevitável. Revestimentos vinílicos para teto, forro e
-            parede: a beleza da madeira e da pedra, com obra limpa e zero manutenção.
+            parede: a beleza da madeira, com obra limpa e zero manutenção.
           </p>
           {/* Mobile: subtitle + button rendered after octagon */}
           <a
@@ -39,7 +39,7 @@ const Hero = () => {
         <div className="flex flex-col items-center md:hidden">
           <p className="text-[16px] text-[#8B7B6B] font-body text-center leading-relaxed">
             Mas a nossa essência é inevitável. Revestimentos vinílicos para teto, forro e
-            parede: a beleza da madeira e da pedra, com obra limpa e zero manutenção.
+            parede: a beleza da madeira, com obra limpa e zero manutenção.
           </p>
           <a
             href="/produtos"

@@ -22,16 +22,6 @@ import lisoFreijo from "@/assets/produtos/liso-freijo.jpg";
 import lisoCarvalho from "@/assets/produtos/liso-carvalho.jpg";
 import lisoCastanheira from "@/assets/produtos/liso-castanheira.jpg";
 
-// Pedra
-import pedra01 from "@/assets/produtos/pedra-01.jpg";
-import pedra02 from "@/assets/produtos/pedra-02.jpg";
-import pedra03 from "@/assets/produtos/pedra-03.jpg";
-import pedra04 from "@/assets/produtos/pedra-04.jpg";
-import pedra05 from "@/assets/produtos/pedra-05.jpg";
-import pedra06 from "@/assets/produtos/pedra-06.jpg";
-import pedra07 from "@/assets/produtos/pedra-07.jpg";
-
-type Category = "natureshell" | "lith";
 type SubFilter = "todos" | "ripado" | "liso";
 
 interface Product {
@@ -39,46 +29,31 @@ interface Product {
   name: string;
   dimension: string;
   image: string;
-  category: Category;
-  sub: "ripado" | "liso" | "pedra";
+  sub: "ripado" | "liso";
   href: string;
 }
 
 const products: Product[] = [
   // Ripado
-  { id: "r1", name: "Natureshell Ripado Cedro", dimension: "26,3×7cm", image: ripadoCedro, category: "natureshell", sub: "ripado", href: "/produtos/ripado" },
-  { id: "r2", name: "Natureshell Ripado Nogueira", dimension: "26,3×7cm", image: ripadoNogueira, category: "natureshell", sub: "ripado", href: "/produtos/ripado" },
-  { id: "r3", name: "Natureshell Ripado Freijó", dimension: "26,3×7cm", image: ripadoFreijo, category: "natureshell", sub: "ripado", href: "/produtos/ripado" },
-  { id: "r4", name: "Natureshell Ripado Carvalho", dimension: "26,3×7cm", image: ripadoCarvalho, category: "natureshell", sub: "ripado", href: "/produtos/ripado" },
-  { id: "r5", name: "Natureshell Ripado Castanheira", dimension: "26,3×7cm", image: ripadoCastanheira, category: "natureshell", sub: "ripado", href: "/produtos/ripado" },
+  { id: "r1", name: "Natureshell Ripado Cedro", dimension: "26,3×7cm", image: ripadoCedro, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r2", name: "Natureshell Ripado Nogueira", dimension: "26,3×7cm", image: ripadoNogueira, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r3", name: "Natureshell Ripado Freijó", dimension: "26,3×7cm", image: ripadoFreijo, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r4", name: "Natureshell Ripado Carvalho", dimension: "26,3×7cm", image: ripadoCarvalho, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r5", name: "Natureshell Ripado Castanheira", dimension: "26,3×7cm", image: ripadoCastanheira, sub: "ripado", href: "/produtos/ripado" },
   // Liso
-  { id: "l1", name: "Natureshell Liso Cedro", dimension: "16,7×2,2cm", image: lisoCedro, category: "natureshell", sub: "liso", href: "/produtos/liso" },
-  { id: "l2", name: "Natureshell Liso Nogueira", dimension: "16,7×2,2cm", image: lisoNogueira, category: "natureshell", sub: "liso", href: "/produtos/liso" },
-  { id: "l3", name: "Natureshell Liso Freijó", dimension: "16,7×2,2cm", image: lisoFreijo, category: "natureshell", sub: "liso", href: "/produtos/liso" },
-  { id: "l4", name: "Natureshell Liso Carvalho", dimension: "16,7×2,2cm", image: lisoCarvalho, category: "natureshell", sub: "liso", href: "/produtos/liso" },
-  { id: "l5", name: "Natureshell Liso Castanheira", dimension: "16,7×2,2cm", image: lisoCastanheira, category: "natureshell", sub: "liso", href: "/produtos/liso" },
-  // Pedra
-  { id: "p1", name: "Lith Pedra Flexível 01", dimension: "1200×600mm", image: pedra01, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p2", name: "Lith Pedra Flexível 02", dimension: "1200×600mm", image: pedra02, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p3", name: "Lith Pedra Flexível 03", dimension: "1200×600mm", image: pedra03, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p4", name: "Lith Pedra Flexível 04", dimension: "1200×600mm", image: pedra04, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p5", name: "Lith Pedra Flexível 05", dimension: "1200×600mm", image: pedra05, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p6", name: "Lith Pedra Flexível 06", dimension: "1200×600mm", image: pedra06, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
-  { id: "p7", name: "Lith Pedra Flexível 07", dimension: "1200×600mm", image: pedra07, category: "lith", sub: "pedra", href: "/produtos/pedra-flexivel" },
+  { id: "l1", name: "Natureshell Liso Cedro", dimension: "16,7×2,2cm", image: lisoCedro, sub: "liso", href: "/produtos/liso" },
+  { id: "l2", name: "Natureshell Liso Nogueira", dimension: "16,7×2,2cm", image: lisoNogueira, sub: "liso", href: "/produtos/liso" },
+  { id: "l3", name: "Natureshell Liso Freijó", dimension: "16,7×2,2cm", image: lisoFreijo, sub: "liso", href: "/produtos/liso" },
+  { id: "l4", name: "Natureshell Liso Carvalho", dimension: "16,7×2,2cm", image: lisoCarvalho, sub: "liso", href: "/produtos/liso" },
+  { id: "l5", name: "Natureshell Liso Castanheira", dimension: "16,7×2,2cm", image: lisoCastanheira, sub: "liso", href: "/produtos/liso" },
 ];
 
 const ProdutosListing = () => {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<Category>("natureshell");
   const [subFilter, setSubFilter] = useState<SubFilter>("todos");
 
-  const filtered = products.filter((p) => {
-    if (p.category !== activeCategory) return false;
-    if (activeCategory === "natureshell" && subFilter !== "todos") {
-      return p.sub === subFilter;
-    }
-    return true;
-  });
+  const filtered =
+    subFilter === "todos" ? products : products.filter((p) => p.sub === subFilter);
 
   return (
     <div className="min-h-screen bg-background">
@@ -102,31 +77,11 @@ const ProdutosListing = () => {
         </div>
       </section>
 
-      {/* Category Tabs */}
+      {/* Linha */}
       <div className="section-padding py-0">
-        <div className="grid grid-cols-2 border border-border rounded-xl overflow-hidden -mt-6 relative z-10 bg-background shadow-sm">
-          <button
-            onClick={() => { setActiveCategory("natureshell"); setSubFilter("todos"); }}
-            className={`py-5 text-center transition-colors ${
-              activeCategory === "natureshell"
-                ? "bg-muted text-foreground"
-                : "bg-background text-foreground/50 hover:text-foreground/70"
-            }`}
-          >
-            <span className="text-base lg:text-lg font-display font-light">Natureshell ®</span>
-            <span className="block text-xs font-body text-foreground/50 mt-0.5">Forro Vinílico</span>
-          </button>
-          <button
-            onClick={() => { setActiveCategory("lith"); setSubFilter("todos"); }}
-            className={`py-5 text-center transition-colors ${
-              activeCategory === "lith"
-                ? "bg-muted text-foreground"
-                : "bg-background text-foreground/50 hover:text-foreground/70"
-            }`}
-          >
-            <span className="text-base lg:text-lg font-display font-light">Lith ®</span>
-            <span className="block text-xs font-body text-foreground/50 mt-0.5">Pedra Flexível</span>
-          </button>
+        <div className="border border-border rounded-xl overflow-hidden -mt-6 relative z-10 bg-muted shadow-sm py-5 text-center">
+          <span className="text-base lg:text-lg font-display font-light text-foreground">Natureshell ®</span>
+          <span className="block text-xs font-body text-foreground/50 mt-0.5">Forro Vinílico</span>
         </div>
       </div>
 
@@ -140,24 +95,22 @@ const ProdutosListing = () => {
           <span className="text-foreground">Catálogo</span>
         </p>
 
-        {activeCategory === "natureshell" && (
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-body text-muted-foreground mr-1">Filtro:</span>
-            {(["ripado", "liso", "todos"] as SubFilter[]).map((f) => (
-              <button
-                key={f}
-                onClick={() => setSubFilter(f)}
-                className={`text-xs font-body px-3 py-1 rounded-md transition-colors capitalize ${
-                  subFilter === f
-                    ? "bg-foreground text-background"
-                    : "bg-muted text-foreground/60 hover:text-foreground"
-                }`}
-              >
-                {f === "todos" ? "Todos" : f.charAt(0).toUpperCase() + f.slice(1)}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-body text-muted-foreground mr-1">Filtro:</span>
+          {(["ripado", "liso", "todos"] as SubFilter[]).map((f) => (
+            <button
+              key={f}
+              onClick={() => setSubFilter(f)}
+              className={`text-xs font-body px-3 py-1 rounded-md transition-colors capitalize ${
+                subFilter === f
+                  ? "bg-foreground text-background"
+                  : "bg-muted text-foreground/60 hover:text-foreground"
+              }`}
+            >
+              {f === "todos" ? "Todos" : f.charAt(0).toUpperCase() + f.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Product Grid */}
@@ -189,10 +142,10 @@ const ProdutosListing = () => {
                   className="mt-3 w-full text-xs gap-1.5"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate("/orcamento");
+                    navigate(`${product.href}#comprar`);
                   }}
                 >
-                  Solicitar orçamento
+                  Comprar
                   <ShoppingBag size={14} />
                 </Button>
               </div>
