@@ -14,7 +14,7 @@ const linhas = [
   {
     nome: "Natureshell PVC Ripado",
     image: ripadoImg,
-    dimensao: "26,3 × 7 cm",
+    dimensao: "160 × 22 mm",
     href: "/produtos/ripado",
     descricao:
       "O ripado vinílico traz o relevo e o ritmo da madeira ripada com a leveza do PVC. Ideal para forros de sala, painéis de destaque e espaços comerciais que pedem presença visual imediata.",
@@ -23,7 +23,7 @@ const linhas = [
   {
     nome: "Natureshell PVC Liso",
     image: lisoImg,
-    dimensao: "16,7 × 2,2 cm",
+    dimensao: "200 × 8 mm",
     href: "/produtos/liso",
     descricao:
       "Acabamento contínuo e discreto, com veios impressos em alta definição. É a escolha para quem quer um teto de madeira uniforme, elegante e sem manutenção.",

@@ -35,17 +35,17 @@ interface Product {
 
 const products: Product[] = [
   // Ripado
-  { id: "r1", name: "Natureshell Ripado Cedro", dimension: "26,3×7cm", image: ripadoCedro, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r2", name: "Natureshell Ripado Nogueira", dimension: "26,3×7cm", image: ripadoNogueira, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r3", name: "Natureshell Ripado Freijó", dimension: "26,3×7cm", image: ripadoFreijo, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r4", name: "Natureshell Ripado Carvalho", dimension: "26,3×7cm", image: ripadoCarvalho, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r5", name: "Natureshell Ripado Castanheira", dimension: "26,3×7cm", image: ripadoCastanheira, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r1", name: "Natureshell Ripado Cedro", dimension: "160×22mm", image: ripadoCedro, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r2", name: "Natureshell Ripado Nogueira", dimension: "160×22mm", image: ripadoNogueira, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r3", name: "Natureshell Ripado Freijó", dimension: "160×22mm", image: ripadoFreijo, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r4", name: "Natureshell Ripado Carvalho", dimension: "160×22mm", image: ripadoCarvalho, sub: "ripado", href: "/produtos/ripado" },
+  { id: "r5", name: "Natureshell Ripado Castanheira", dimension: "160×22mm", image: ripadoCastanheira, sub: "ripado", href: "/produtos/ripado" },
   // Liso
-  { id: "l1", name: "Natureshell Liso Cedro", dimension: "16,7×2,2cm", image: lisoCedro, sub: "liso", href: "/produtos/liso" },
-  { id: "l2", name: "Natureshell Liso Nogueira", dimension: "16,7×2,2cm", image: lisoNogueira, sub: "liso", href: "/produtos/liso" },
-  { id: "l3", name: "Natureshell Liso Freijó", dimension: "16,7×2,2cm", image: lisoFreijo, sub: "liso", href: "/produtos/liso" },
-  { id: "l4", name: "Natureshell Liso Carvalho", dimension: "16,7×2,2cm", image: lisoCarvalho, sub: "liso", href: "/produtos/liso" },
-  { id: "l5", name: "Natureshell Liso Castanheira", dimension: "16,7×2,2cm", image: lisoCastanheira, sub: "liso", href: "/produtos/liso" },
+  { id: "l1", name: "Natureshell Liso Cedro", dimension: "200×8mm", image: lisoCedro, sub: "liso", href: "/produtos/liso" },
+  { id: "l2", name: "Natureshell Liso Nogueira", dimension: "200×8mm", image: lisoNogueira, sub: "liso", href: "/produtos/liso" },
+  { id: "l3", name: "Natureshell Liso Freijó", dimension: "200×8mm", image: lisoFreijo, sub: "liso", href: "/produtos/liso" },
+  { id: "l4", name: "Natureshell Liso Carvalho", dimension: "200×8mm", image: lisoCarvalho, sub: "liso", href: "/produtos/liso" },
+  { id: "l5", name: "Natureshell Liso Castanheira", dimension: "200×8mm", image: lisoCastanheira, sub: "liso", href: "/produtos/liso" },
 ];
 
 const ProdutosListing = () => {

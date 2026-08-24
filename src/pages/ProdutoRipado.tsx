@@ -25,7 +25,7 @@ const ProdutoRipado = () => (
       "Disponível nas cores Carvalho, Cedro, Freijó, Castanheira e Nogueira, o Mono Natureshell oferece uma paleta equilibrada, inspirada em madeiras atemporais, capaz de dialogar com diferentes linguagens arquitetônicas sem perder identidade.",
     ]}
     specs={[
-      { label: "Medida", value: "26,3cm × 7cm × 2,90m" },
+      { label: "Medida", value: "160mm × 22mm × 2900mm" },
       { label: "Tipo de encaixe", value: "Macho e fêmea" },
       { label: "Acabamento", value: "Verniz fosco" },
       { label: "Acessórios", value: "Arremate e Emenda" },

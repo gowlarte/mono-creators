@@ -25,7 +25,7 @@ const ProdutoLiso = () => (
       "Disponível nas cores Carvalho, Cedro, Freijó, Castanheira e Nogueira, o forro Mono Natureshell compartilha a mesma paleta da linha, permitindo composições coesas entre parede e teto, com unidade estética e identidade material preservadas.",
     ]}
     specs={[
-      { label: "Medida", value: "16,7cm × 2,2cm × 5,80m" },
+      { label: "Medida", value: "200mm × 8mm × 5800mm" },
       { label: "Tipo de encaixe", value: "Macho e fêmea" },
       { label: "Acabamento", value: "Verniz fosco" },
       { label: "Acessórios", value: "Arremate e Emenda" },

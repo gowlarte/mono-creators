@@ -110,13 +110,19 @@ const CamadasScroll = () => {
         const deriva = i * 0.012 * abertura; // leve escorregada para a esquerda
         if (el) el.style.transform = `translate(${-deriva * L}px, ${-subida * L}px)`;
 
+        // Mesma cortina para rótulo e linha: a linha não pode existir antes do texto.
+        const surgimento = clamp01((progresso - (0.1 + i * 0.15)) / 0.15);
+
         if (guia) {
           const yAncora = TOPO_DA_BASE - subida + (c.bordaTopoPct / 100) / c.proporcao;
-          guia.style.height = `${Math.max(0, (yAncora - BASE_DO_ROTULO) * L)}px`;
+          const alturaCheia = Math.max(0, (yAncora - BASE_DO_ROTULO) * L);
+          // Desenha de cima para baixo: o ponto da ponta desce junto e encosta
+          // na camada quando o rótulo termina de entrar.
+          guia.style.height = `${alturaCheia * surgimento}px`;
+          guia.style.opacity = String(surgimento);
         }
 
         if (rotulo) {
-          const surgimento = clamp01((progresso - (0.1 + i * 0.15)) / 0.15);
           rotulo.style.opacity = String(surgimento);
           rotulo.style.transform = `translateY(${(1 - surgimento) * 8}px)`;
         }
@@ -210,7 +216,7 @@ const CamadasScroll = () => {
                     className={`absolute z-10 w-px bg-foreground/30 pointer-events-none ${
                       estatico ? "hidden" : ""
                     }`}
-                    style={{ left: `${c.xAncora}%`, top: emTop(BASE_DO_ROTULO), height: 0 }}
+                    style={{ left: `${c.xAncora}%`, top: emTop(BASE_DO_ROTULO), height: 0, opacity: 0 }}
                   >
                     <span className="absolute -bottom-[2px] -left-[2px] w-[5px] h-[5px] rounded-full bg-foreground/45" />
                   </div>
