@@ -140,11 +140,15 @@ const ProdutosListing = () => {
                 className="group border border-border rounded-xl p-4 hover:shadow-md transition-shadow cursor-pointer bg-background"
                 onClick={() => navigate(product.href)}
               >
-                <div className="aspect-square overflow-hidden rounded-lg mb-3 bg-muted/30">
+                {/* Os renders do painel são retangulares (1,24:1 no ripado, 1,5:1 no
+                    liso). Num quadrado, object-cover cortava as pontas da peça:
+                    contain mostra a peça inteira e o padding dá folga para o zoom
+                    do hover não encostar na borda. */}
+                <div className="aspect-square overflow-hidden rounded-lg mb-3 bg-muted/30 p-3">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
