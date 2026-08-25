@@ -34,11 +34,16 @@ const App = () => (
           <Route path="/revendedor" element={<Revendedor />} />
           <Route path="/onde-comprar" element={<OndeComprar />} />
           <Route path="/produtos" element={<ProdutosOverview />} />
-          <Route path="/produtos/catalogo" element={<ProdutosListing />} />
-          {/* A rota antiga circulou antes de virar /catalogo: redireciona em vez de 404. */}
+          <Route path="/produtos/catalogo-cores" element={<ProdutosListing />} />
+          {/* Rotas antigas que circularam antes de /catalogo-cores: redireciona
+              em vez de 404. */}
           <Route
             path="/produtos/carrinho"
-            element={<Navigate to="/produtos/catalogo" replace />}
+            element={<Navigate to="/produtos/catalogo-cores" replace />}
+          />
+          <Route
+            path="/produtos/catalogo"
+            element={<Navigate to="/produtos/catalogo-cores" replace />}
           />
           <Route path="/produtos/ripado" element={<ProdutoRipado />} />
           <Route path="/produtos/liso" element={<ProdutoLiso />} />
