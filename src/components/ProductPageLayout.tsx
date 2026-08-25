@@ -6,7 +6,7 @@ import MonoFooter from "./MonoFooter";
 import AnimateOnScroll from "./AnimateOnScroll";
 import BentoGallery from "./BentoGallery";
 import OpcoesDeCompra from "./OpcoesDeCompra";
-import type { LinhaId } from "@/data/marketplaces";
+import type { LinhaId } from "@/data/compra";
 
 interface ColorSwatch {
   name: string;
@@ -32,7 +32,7 @@ interface ProductPageLayoutProps {
   colors: ColorSwatch[];
   colorsTitle?: string;
   gallery?: GalleryImage[];
-  /** Resolve o anúncio de marketplace desta linha no bloco de compra. */
+  /** Resolve a mensagem de WhatsApp de cada cor no bloco de compra. */
   linha?: LinhaId;
 }
 
@@ -186,7 +186,8 @@ const ProductPageLayout = ({
                 Comprar {title}
               </h2>
               <p className="text-sm lg:text-base font-body text-secondary-foreground/70">
-                Disponível nas lojas oficiais MONO nos marketplaces.
+                Escolha a cor e fale com a nossa equipe no WhatsApp. A mensagem já vai
+                preenchida com a linha e a medida que você está vendo.
               </p>
             </div>
           </AnimateOnScroll>

@@ -4,7 +4,8 @@ import Navbar from "@/components/Navbar";
 import MonoFooter from "@/components/MonoFooter";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import { cores, linhas, linkCompra, type CorNome, type LinhaId } from "@/data/compra";
 
 import heroImg from "@/assets/produto-teto-vinilico.jpg";
 
@@ -22,31 +23,48 @@ import lisoFreijo from "@/assets/produtos/liso-freijo.jpg";
 import lisoCarvalho from "@/assets/produtos/liso-carvalho.jpg";
 import lisoCastanheira from "@/assets/produtos/liso-castanheira.jpg";
 
-type SubFilter = "todos" | "ripado" | "liso";
+type SubFilter = "todos" | LinhaId;
 
 interface Product {
   id: string;
   name: string;
+  cor: CorNome;
   dimension: string;
   image: string;
-  sub: "ripado" | "liso";
+  sub: LinhaId;
   href: string;
 }
 
-const products: Product[] = [
-  // Ripado
-  { id: "r1", name: "Natureshell Ripado Cedro", dimension: "160×22mm", image: ripadoCedro, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r2", name: "Natureshell Ripado Nogueira", dimension: "160×22mm", image: ripadoNogueira, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r3", name: "Natureshell Ripado Freijó", dimension: "160×22mm", image: ripadoFreijo, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r4", name: "Natureshell Ripado Carvalho", dimension: "160×22mm", image: ripadoCarvalho, sub: "ripado", href: "/produtos/ripado" },
-  { id: "r5", name: "Natureshell Ripado Castanheira", dimension: "160×22mm", image: ripadoCastanheira, sub: "ripado", href: "/produtos/ripado" },
-  // Liso
-  { id: "l1", name: "Natureshell Liso Cedro", dimension: "200×8mm", image: lisoCedro, sub: "liso", href: "/produtos/liso" },
-  { id: "l2", name: "Natureshell Liso Nogueira", dimension: "200×8mm", image: lisoNogueira, sub: "liso", href: "/produtos/liso" },
-  { id: "l3", name: "Natureshell Liso Freijó", dimension: "200×8mm", image: lisoFreijo, sub: "liso", href: "/produtos/liso" },
-  { id: "l4", name: "Natureshell Liso Carvalho", dimension: "200×8mm", image: lisoCarvalho, sub: "liso", href: "/produtos/liso" },
-  { id: "l5", name: "Natureshell Liso Castanheira", dimension: "200×8mm", image: lisoCastanheira, sub: "liso", href: "/produtos/liso" },
-];
+const imagens: Record<LinhaId, Record<CorNome, string>> = {
+  ripado: {
+    Cedro: ripadoCedro,
+    Nogueira: ripadoNogueira,
+    Freijó: ripadoFreijo,
+    Carvalho: ripadoCarvalho,
+    Castanheira: ripadoCastanheira,
+  },
+  liso: {
+    Cedro: lisoCedro,
+    Nogueira: lisoNogueira,
+    Freijó: lisoFreijo,
+    Carvalho: lisoCarvalho,
+    Castanheira: lisoCastanheira,
+  },
+};
+
+// Nome e medida saem de @/data/compra para o card, a mensagem do WhatsApp e a
+// página de produto nunca divergirem quando uma medida mudar.
+const products: Product[] = (Object.keys(linhas) as LinhaId[]).flatMap((sub) =>
+  cores.map((cor) => ({
+    id: `${sub}-${cor}`,
+    name: `Natureshell ${linhas[sub].rotulo} ${cor}`,
+    cor,
+    dimension: linhas[sub].medidaCurta,
+    image: imagens[sub][cor],
+    sub,
+    href: `/produtos/${sub}`,
+  })),
+);
 
 const ProdutosListing = () => {
   const navigate = useNavigate();
@@ -136,17 +154,22 @@ const ProdutosListing = () => {
                 <p className="text-xs font-body text-muted-foreground mt-0.5">
                   {product.dimension}
                 </p>
+                {/* Vai direto para o WhatsApp com a linha e a cor deste card. */}
                 <Button
+                  asChild
                   variant="mono-outline"
                   size="sm"
                   className="mt-3 w-full text-xs gap-1.5"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`${product.href}#comprar`);
-                  }}
                 >
-                  Comprar
-                  <ShoppingBag size={14} />
+                  <a
+                    href={linkCompra(product.sub, product.cor)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Comprar
+                    <MessageCircle size={14} />
+                  </a>
                 </Button>
               </div>
             </AnimateOnScroll>

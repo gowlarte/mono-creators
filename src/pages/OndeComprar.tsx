@@ -4,12 +4,9 @@ import Navbar from "@/components/Navbar";
 import MonoFooter from "@/components/MonoFooter";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import OpcoesDeCompra from "@/components/OpcoesDeCompra";
-import { temCanalAtivo } from "@/data/marketplaces";
 import heroImg from "@/assets/produtos/liso-ambientacao.jpg";
 
 const OndeComprar = () => {
-  const jaVende = temCanalAtivo();
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -38,13 +35,11 @@ const OndeComprar = () => {
           <AnimateOnScroll>
             <div className="max-w-3xl space-y-5">
               <h2 className="text-2xl lg:text-3xl font-display font-light text-foreground">
-                Compre nas lojas oficiais MONO
+                Compre direto com a nossa equipe
               </h2>
               <div className="w-16 h-px bg-mono-accent" />
               <p className="font-body text-base text-muted-foreground leading-relaxed">
-                {jaVende
-                  ? "Nossas linhas estão disponíveis nos principais marketplaces do país. Escolha o canal de sua preferência — em todos eles você compra direto da loja oficial, com o mesmo produto e a mesma garantia."
-                  : "Estamos abrindo nossas lojas oficiais nos principais marketplaces do país. Assim que cada canal entrar no ar, o link aparece aqui — em todos eles você compra direto da MONO, com o mesmo produto e a mesma garantia."}
+                A venda das linhas Natureshell é feita direto com a MONO, pelo WhatsApp comercial. Escolha a linha abaixo e a conversa já abre com o produto e a medida preenchidos — de lá a equipe passa preço, prazo de entrega e o cálculo dos arremates e emendas que o seu projeto precisa.
               </p>
             </div>
           </AnimateOnScroll>
@@ -55,8 +50,8 @@ const OndeComprar = () => {
 
           <AnimateOnScroll>
             <p className="font-body text-xs text-muted-foreground max-w-3xl leading-relaxed">
-              Compre apenas pelas lojas oficiais listadas acima. Não temos representantes
-              autorizados a vender por outros perfis ou canais.
+              Só temos um canal de venda: o WhatsApp oficial acima. Não temos representantes
+              autorizados a vender em nosso nome por outros perfis, sites ou canais.
             </p>
           </AnimateOnScroll>
         </div>
