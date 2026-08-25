@@ -23,7 +23,9 @@ interface Linha {
   nome: string;
   /** Nome curto, do jeito que aparece no card do catálogo. */
   rotulo: string;
-  /** Medida curta, para o card do catálogo. */
+  /** Medida com espacamento apertado, para caber no card do catalogo.
+   *  Traz o comprimento igual a `medida`: largura e espessura sozinhas nao
+   *  dizem quanto de peca a pessoa leva. */
   medidaCurta: string;
   /** Medida completa, usada na mensagem do WhatsApp. */
   medida: string;
@@ -35,14 +37,14 @@ export const linhas: Record<LinhaId, Linha> = {
   ripado: {
     nome: "Natureshell PVC Ripado",
     rotulo: "Ripado",
-    medidaCurta: "160×22mm",
+    medidaCurta: "160×22×2900mm",
     medida: "160 × 22 × 2900 mm",
     acabamento: "ripado",
   },
   liso: {
     nome: "Natureshell PVC Liso",
     rotulo: "Liso",
-    medidaCurta: "200×8mm",
+    medidaCurta: "200×8×5800mm",
     medida: "200 × 8 × 5800 mm",
     acabamento: "liso",
   },

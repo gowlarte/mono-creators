@@ -5,16 +5,19 @@ import MonoNewsletter from "@/components/MonoNewsletter";
 import CtaOrcamento from "@/components/CtaOrcamento";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { ArrowRight } from "lucide-react";
+import { linhas as linhasCompra } from "@/data/compra";
 
 import heroImg from "@/assets/produtos/ripado-hero.jpg";
 import ripadoImg from "@/assets/produtos/ripado-ambientacao.jpg";
 import lisoImg from "@/assets/produtos/liso-ambientacao.jpg";
 
+// A medida vem de @/data/compra para nao divergir do catalogo, da pagina de
+// produto e da mensagem do WhatsApp.
 const linhas = [
   {
     nome: "Natureshell PVC Ripado",
     image: ripadoImg,
-    dimensao: "160 × 22 mm",
+    dimensao: linhasCompra.ripado.medida,
     href: "/produtos/ripado",
     descricao:
       "O ripado vinílico traz o relevo e o ritmo da madeira ripada com a leveza do PVC. Ideal para forros de sala, painéis de destaque e espaços comerciais que pedem presença visual imediata.",
@@ -23,7 +26,7 @@ const linhas = [
   {
     nome: "Natureshell PVC Liso",
     image: lisoImg,
-    dimensao: "200 × 8 mm",
+    dimensao: linhasCompra.liso.medida,
     href: "/produtos/liso",
     descricao:
       "Acabamento contínuo e discreto, com veios impressos em alta definição. É a escolha para quem quer um teto de madeira uniforme, elegante e sem manutenção.",
