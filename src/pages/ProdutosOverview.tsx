@@ -74,7 +74,7 @@ const ProdutosOverview = () => {
               vá direto para o catálogo de cores.
             </p>
             <Link
-              to="/produtos/carrinho"
+              to="/produtos/catalogo"
               className="inline-flex items-center gap-2 text-sm font-body text-white px-6 py-3 rounded transition-opacity hover:opacity-85"
               style={{ backgroundColor: "hsl(27 55% 50%)" }}
             >
@@ -126,7 +126,7 @@ const ProdutosOverview = () => {
                       Ver linha completa
                     </Link>
                     <Link
-                      to="/produtos/carrinho"
+                      to="/produtos/catalogo"
                       className="inline-block border border-border text-foreground text-sm font-body px-6 py-3 rounded hover:bg-muted transition-colors"
                     >
                       Ver cores no catálogo

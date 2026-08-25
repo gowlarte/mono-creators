@@ -4,7 +4,7 @@ import logoMono from "@/assets/logo-mono-vinilicos.png";
 
 const navLinks = [
   { label: "Produtos", href: "/produtos" },
-  { label: "Catálogo de cores", href: "/produtos/carrinho" },
+  { label: "Catálogo de cores", href: "/produtos/catalogo" },
   { label: "Sobre a Mono", href: "/sobre" },
   { label: "Baixe o catálogo", href: "/downloads" },
   { label: "Seja revendedor", href: "/revendedor" },

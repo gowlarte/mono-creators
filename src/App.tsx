@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Orcamento from "./pages/Orcamento";
 import Downloads from "./pages/Downloads";
@@ -34,7 +34,12 @@ const App = () => (
           <Route path="/revendedor" element={<Revendedor />} />
           <Route path="/onde-comprar" element={<OndeComprar />} />
           <Route path="/produtos" element={<ProdutosOverview />} />
-          <Route path="/produtos/carrinho" element={<ProdutosListing />} />
+          <Route path="/produtos/catalogo" element={<ProdutosListing />} />
+          {/* A rota antiga circulou antes de virar /catalogo: redireciona em vez de 404. */}
+          <Route
+            path="/produtos/carrinho"
+            element={<Navigate to="/produtos/catalogo" replace />}
+          />
           <Route path="/produtos/ripado" element={<ProdutoRipado />} />
           <Route path="/produtos/liso" element={<ProdutoLiso />} />
           <Route path="/obrigado/catalogo" element={<ObrigadoCatalogo />} />
