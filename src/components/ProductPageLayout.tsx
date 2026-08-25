@@ -32,6 +32,9 @@ interface ProductPageLayoutProps {
   colors: ColorSwatch[];
   colorsTitle?: string;
   gallery?: GalleryImage[];
+  /** Recorte do hero. As fotos de ambiente sao retrato e o hero e uma faixa
+   *  larga: sem isso o corte central cai na mobilia em vez do revestimento. */
+  heroPosition?: string;
   /** Resolve a mensagem de WhatsApp de cada cor no bloco de compra. */
   linha?: LinhaId;
 }
@@ -45,6 +48,7 @@ const ProductPageLayout = ({
   colors,
   colorsTitle = "Cores disponíveis",
   gallery = [],
+  heroPosition,
   linha,
 }: ProductPageLayoutProps) => {
   const navigate = useNavigate();
@@ -69,6 +73,7 @@ const ProductPageLayout = ({
           src={heroImage}
           alt={title}
           className="w-full h-full object-cover"
+          style={heroPosition ? { objectPosition: heroPosition } : undefined}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent" />
 

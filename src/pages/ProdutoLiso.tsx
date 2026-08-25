@@ -1,5 +1,4 @@
 import ProductPageLayout from "@/components/ProductPageLayout";
-import heroImg from "@/assets/produtos/liso-hero.jpg";
 import cedroImg from "@/assets/produtos/liso-cedro.jpg";
 import carvalhoImg from "@/assets/produtos/liso-carvalho.jpg";
 import freijoImg from "@/assets/produtos/liso-freijo.jpg";
@@ -10,7 +9,7 @@ import amb02 from "@/assets/produtos/liso-amb-02.jpg";
 import amb03 from "@/assets/produtos/liso-amb-03.jpg";
 import amb04 from "@/assets/produtos/liso-amb-04.jpg";
 import amb05 from "@/assets/produtos/liso-amb-05.jpg";
-import ambHero from "@/assets/produtos/liso-ambientacao.jpg";
+import heroImg from "@/assets/produtos/liso-ambientacao.jpg";
 
 const ProdutoLiso = () => (
   <ProductPageLayout
@@ -18,6 +17,9 @@ const ProdutoLiso = () => (
     title="Natureshell PVC Liso"
     subtitle="Forro Vinílico"
     heroImage={heroImg}
+    // A foto e retrato e tem forro e parede lisos: subir o recorte pega a
+    // junção dos dois planos, em vez de parar na mobilia do meio.
+    heroPosition="center 30%"
     description={[
       "Os forros Natureshell da MONO foram desenvolvidos para projetos que pedem continuidade visual, precisão de acabamento e eficiência construtiva. Com superfície lisa e composição vinílica em PVC, o sistema entrega uma leitura limpa e equilibrada, ideal para ambientes que exigem discrição estética e alto controle formal.",
       "A ausência de ranhuras reforça a uniformidade do plano, permitindo que o forro atue como base silenciosa da arquitetura, valorizando iluminação, volumetria e demais elementos do espaço. Leve e versátil, pode ser aplicado em tetos residenciais ou comerciais, em áreas internas ou protegidas, com estabilidade dimensional e acabamento consistente ao longo do tempo.",
@@ -41,7 +43,6 @@ const ProdutoLiso = () => (
       { name: "Nogueira", image: nogueiraImg },
     ]}
     gallery={[
-      { src: ambHero, alt: "Ambientação Liso" },
       { src: amb01, alt: "Liso em ambiente residencial" },
       { src: amb02, alt: "Liso em ambiente comercial" },
       { src: amb03, alt: "Liso em sala de estar" },
