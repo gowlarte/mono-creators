@@ -10,14 +10,25 @@ const navLinks = [
   { label: "Seja revendedor", href: "/revendedor" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  /**
+   * Prefixo dos links do menu. Vazio dentro do site, que navega por caminho
+   * relativo. A landing de creators é publicada em outro endereço, então ela
+   * passa o domínio do site no ar — senão o menu levaria para as rotas da
+   * própria landing, que são uma cópia parada do site.
+   */
+  baseUrl?: string;
+}
+
+const Navbar = ({ baseUrl = "" }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const para = (caminho: string) => `${baseUrl}${caminho}`;
 
   return (
     <nav className="sticky top-0 z-50 bg-[#E8E4DC]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-16 lg:px-20 flex items-center justify-between h-14 md:h-16">
         {/* Logo */}
-        <a href="/" className="flex-shrink-0">
+        <a href={para("/")} className="flex-shrink-0">
           <img
             src={logoMono}
             alt="MONO Vinílicos"
@@ -32,14 +43,14 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={link.href}
+              href={para(link.href)}
               className="text-[14px] font-body text-[#8B6644] hover:text-[#6B4426] transition-colors"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="/onde-comprar"
+            href={para("/onde-comprar")}
             className="text-[14px] font-body text-white px-5 py-2 rounded transition-opacity hover:opacity-85"
             style={{ backgroundColor: "hsl(27 55% 50%)" }}
           >
@@ -64,7 +75,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={para(link.href)}
                 className="text-[15px] font-body text-[#8B6644] hover:text-[#6B4426]"
                 onClick={() => setMobileOpen(false)}
               >
@@ -72,7 +83,7 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="/onde-comprar"
+              href={para("/onde-comprar")}
               className="text-[15px] font-body text-white px-5 py-2 rounded text-center transition-opacity hover:opacity-85"
               style={{ backgroundColor: "hsl(27 55% 50%)" }}
               onClick={() => setMobileOpen(false)}

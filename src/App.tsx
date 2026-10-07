@@ -8,6 +8,7 @@ import Orcamento from "./pages/Orcamento";
 import Downloads from "./pages/Downloads";
 import Sobre from "./pages/Sobre";
 import Revendedor from "./pages/Revendedor";
+import Creators from "./pages/Creators";
 import OndeComprar from "./pages/OndeComprar";
 import ProdutoRipado from "./pages/ProdutoRipado";
 import ProdutoLiso from "./pages/ProdutoLiso";
@@ -32,6 +33,9 @@ const App = () => (
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/revendedor" element={<Revendedor />} />
+          {/* Recrutamento de influenciadores. Fora do menu: o tráfego vem da
+              bio do Instagram e das campanhas. */}
+          <Route path="/creators" element={<Creators />} />
           <Route path="/onde-comprar" element={<OndeComprar />} />
           <Route path="/produtos" element={<ProdutosOverview />} />
           <Route path="/produtos/catalogo-cores" element={<ProdutosListing />} />
