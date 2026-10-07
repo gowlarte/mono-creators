@@ -1,7 +1,17 @@
 # MONO Creators — landing de recrutamento
 
-Landing de captação de influenciadores para o programa MONO Creators, no ar em
-**`/creators`** dentro do site principal. Esta pasta guarda o briefing, o copy
+Landing de captação de influenciadores para o programa MONO Creators.
+
+Ela é publicada **sozinha**, num endereço próprio (repositório `mono-creators`
+na conta pessoal, deploy na Vercel), e por isso ocupa a **raiz** desse endereço:
+o site no ar não tem link para o programa e, por enquanto, é assim que deve ser
+— ninguém deveria precisar digitar `/creators` para chegar nela. A rota
+`/creators` continua respondendo, para não quebrar link já divulgado.
+
+Quando a landing for para o site da MONO, leve os **arquivos**, não a rota raiz
+desta branch — ela substituiria a home. O aviso está no `src/App.tsx`.
+
+Esta pasta guarda o briefing, o copy
 aprovado e os assets de campanha; o código vive no `src/` do site, reaproveitando
 o design system da MONO (fontes PP Right Gothic / PP Neue York, paleta `mono-*`,
 `Navbar`, `MonoFooter`, `AnimateOnScroll` e os componentes shadcn já instalados).

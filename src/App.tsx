@@ -3,7 +3,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Index from "./pages/Index";
 import Orcamento from "./pages/Orcamento";
 import Downloads from "./pages/Downloads";
 import Sobre from "./pages/Sobre";
@@ -28,7 +27,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* ATENÇÃO: esta branch publica a landing sozinha, num endereço
+              próprio, e por isso a raiz é ela — o site no ar não tem link para
+              o programa de creators e, por ora, é assim que deve ser.
+              Não faça merge desta branch na main do site: a home da MONO seria
+              substituída. Ao levar a landing para lá, leve os arquivos de
+              /creators, não esta rota. */}
+          <Route path="/" element={<Creators />} />
           <Route path="/orcamento" element={<Orcamento />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/downloads" element={<Downloads />} />
