@@ -61,7 +61,6 @@ O que o formulário garante antes de enviar:
 
 - **Instagram e TikTok** normalizados: `@perfil`, `instagram.com/perfil/` ou
   `perfil` chegam na base sempre como `perfil`. E-mail chega em minúsculas.
-- **Aceite dos termos** obrigatório.
 
 ## Onde o cadastro é gravado
 
@@ -101,8 +100,8 @@ console. Para testar com o banco localmente, use `vercel dev`.
 - [ ] Colar a secret key em `SUPABASE_SECRET_KEY` na Vercel e fazer redeploy.
 - [ ] Fazer um cadastro real de ponta a ponta pelo modal e confirmar que o pedido
       chega na comunidade da MONO no painel da Inbazz.
-- [ ] Página ou PDF com os **termos do programa** — o aceite hoje não aponta para
-      lugar nenhum.
+- [ ] **Termos do programa**: não existem ainda, então o formulário não tem
+      checkbox de aceite. Quando houver, volta o checkbox com link para eles.
 - [ ] Trocar as fotos por imagens de campanha, se houver. Hoje o slideshow do
       hero usa cinco ambientes do catálogo (lista no topo de `HeroCreators.tsx`)
       e a seção de convite usa `liso-amb-02.jpg`.

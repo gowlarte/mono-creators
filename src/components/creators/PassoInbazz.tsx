@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowRight, Check, ExternalLink, Loader2, X } from "lucide-react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 import { INBAZZ_CADASTRO_URL, type Candidatura } from "@/lib/creators";
 
@@ -20,6 +20,10 @@ import { INBAZZ_CADASTRO_URL, type Candidatura } from "@/lib/creators";
  * O app da Inbazz leva uns segundos para iniciar e fica em branco enquanto
  * isso. Por isso o modal é montado (escondido) assim que este passo aparece:
  * o iframe carrega enquanto o creator lê o roteiro e abre pronto no clique.
+ *
+ * O modal é feito à mão, sem o Dialog do Radix: montado e fechado, o Radix
+ * continua tratando a página como modal e põe `pointer-events: none` no body
+ * — nada mais é clicável, nem o botão que abriria o modal.
  */
 const PassoInbazz = ({
   candidatura,
@@ -30,6 +34,28 @@ const PassoInbazz = ({
 }) => {
   const [aberto, setAberto] = useState(false);
   const [carregando, setCarregando] = useState(true);
+  const botaoAbrir = useRef<HTMLButtonElement>(null);
+  const botaoFechar = useRef<HTMLButtonElement>(null);
+
+  // Aberto: trava a rolagem da página, leva o foco para o X e fecha no Esc.
+  // O Esc só chega aqui com o foco fora do iframe; dentro dele, quem recebe a
+  // tecla é o app da Inbazz.
+  useEffect(() => {
+    if (!aberto) return;
+    const overflowAntes = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    botaoFechar.current?.focus();
+    const aoTeclar = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAberto(false);
+    };
+    window.addEventListener("keydown", aoTeclar);
+    const abridor = botaoAbrir.current;
+    return () => {
+      document.body.style.overflow = overflowAntes;
+      window.removeEventListener("keydown", aoTeclar);
+      abridor?.focus();
+    };
+  }, [aberto]);
 
   const roteiro = [
     <>
@@ -82,6 +108,7 @@ const PassoInbazz = ({
 
       <div className="space-y-4">
         <button
+          ref={botaoAbrir}
           type="button"
           onClick={() => setAberto(true)}
           className="inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm font-body uppercase tracking-[0.15em] text-white px-10 py-4 rounded transition-opacity hover:opacity-85"
@@ -113,22 +140,31 @@ const PassoInbazz = ({
         </button>
       </p>
 
-      <DialogPrimitive.Root open={aberto} onOpenChange={setAberto}>
-        <DialogPrimitive.Portal forceMount>
-          <DialogPrimitive.Overlay
-            forceMount
-            className="data-[state=closed]:hidden fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=open]:fade-in-0"
+      {createPortal(
+        // Fechado fica invisível, mas com tamanho: com display none o iframe
+        // teria 0×0 e o app da Inbazz só desenharia depois de aberto.
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center ${
+            aberto ? "" : "invisible pointer-events-none"
+          }`}
+          aria-hidden={!aberto}
+        >
+          <div
+            className="absolute inset-0 bg-black/70"
+            onClick={() => setAberto(false)}
+            aria-hidden="true"
           />
-          <DialogPrimitive.Content
-            forceMount
-            className="data-[state=closed]:hidden fixed z-50 inset-0 flex flex-col bg-background sm:inset-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-[440px] sm:h-[min(860px,92vh)] sm:rounded-2xl sm:overflow-hidden shadow-2xl data-[state=open]:animate-in data-[state=open]:fade-in-0"
-            aria-describedby={undefined}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="inbazz-titulo"
+            className="relative flex flex-col w-full h-full bg-background shadow-2xl sm:w-[440px] sm:h-[min(860px,92vh)] sm:rounded-2xl sm:overflow-hidden"
           >
             <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
               <div className="min-w-0 flex-1">
-                <DialogPrimitive.Title className="font-body text-sm text-foreground">
+                <h2 id="inbazz-titulo" className="font-body text-sm text-foreground">
                   Conta na Inbazz
-                </DialogPrimitive.Title>
+                </h2>
                 <p className="font-body text-xs text-muted-foreground truncate">
                   Toque em Cadastre-se e use {candidatura.email}
                 </p>
@@ -143,12 +179,15 @@ const PassoInbazz = ({
               >
                 <ExternalLink size={18} />
               </a>
-              <DialogPrimitive.Close
+              <button
+                ref={botaoFechar}
+                type="button"
+                onClick={() => setAberto(false)}
                 aria-label="Fechar"
                 className="p-2 rounded text-muted-foreground hover:text-foreground"
               >
                 <X size={18} />
-              </DialogPrimitive.Close>
+              </button>
             </div>
             <div className="relative flex-1 bg-white">
               {carregando && (
@@ -161,12 +200,12 @@ const PassoInbazz = ({
                 title="Cadastro na Inbazz"
                 onLoad={() => setCarregando(false)}
                 className="absolute inset-0 w-full h-full border-0"
-                allow="clipboard-write"
               />
             </div>
-          </DialogPrimitive.Content>
-        </DialogPrimitive.Portal>
-      </DialogPrimitive.Root>
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 };

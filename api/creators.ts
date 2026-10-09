@@ -35,7 +35,6 @@ const candidaturaSchema = z.object({
   nicho: texto(80).min(1),
   formatos: z.array(texto(80)).min(1).max(20),
   sobreVoce: opcional(4000),
-  termos: z.literal(true),
   /** Campo escondido na página. Gente não vê e não preenche; robô preenche. */
   site: z.string().optional(),
 });
@@ -91,7 +90,6 @@ export async function POST(request: Request) {
       nicho: dados.nicho,
       formatos: dados.formatos,
       sobre_voce: dados.sobreVoce,
-      aceite_termos_em: new Date().toISOString(),
       origem: "site/creators",
     },
     { onConflict: "email" },

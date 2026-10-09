@@ -51,10 +51,6 @@ const schema = z.object({
   sobreVoce: z.string().trim().optional(),
   /** Isca para robô: fica fora da tela, gente não preenche. Ver api/creators.ts. */
   site: z.string().optional(),
-
-  termos: z.literal(true, {
-    errorMap: () => ({ message: "É preciso aceitar os termos para continuar" }),
-  }),
 });
 
 type Cadastro = z.infer<typeof schema>;
@@ -164,7 +160,9 @@ const CreatorForm = () => {
       };
       guardarCandidatura(nova);
       setCandidatura(nova);
-      irParaOTopo();
+      // Espera o passo 2 entrar na tela: rolar antes, com o formulário longo
+      // ainda montado, deixa o creator parado lá embaixo, no rodapé.
+      requestAnimationFrame(irParaOTopo);
     } catch {
       setErroEnvio(
         "Não conseguimos enviar seu cadastro agora. Tente novamente em alguns instantes.",
@@ -381,31 +379,8 @@ const CreatorForm = () => {
             {...form.register("site")}
           />
 
-          {/* Aceite e envio */}
-          <div className="space-y-6 border-t border-border">
-            <FormField
-              control={form.control}
-              name="termos"
-              render={({ field }) => (
-                <FormItem className="pt-8">
-                  <div className="flex items-start gap-3">
-                    <FormControl>
-                      <Checkbox
-                        className={`mt-1 ${quadrado}`}
-                        checked={field.value === true}
-                        onCheckedChange={(marcado) => field.onChange(marcado === true)}
-                      />
-                    </FormControl>
-                    <FormLabel className="font-body text-sm font-normal text-muted-foreground leading-relaxed">
-                      Li e concordo com os termos do programa MONO Creators e autorizo o uso dos
-                      meus dados para análise da candidatura e contato da equipe. *
-                    </FormLabel>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
+          {/* Envio */}
+          <div className="space-y-6 border-t border-border pt-8">
             {erroEnvio && (
               <p role="alert" className="font-body text-sm text-destructive">
                 {erroEnvio}
