@@ -1,8 +1,8 @@
 /**
  * Conteúdo da landing do MONO Creators.
  *
- * Texto e listas ficam separados da página para o time de marketing editar
- * benefício, nicho ou pergunta do formulário sem mexer em layout.
+ * Texto separado da página para o time de marketing editar os benefícios
+ * sem mexer em layout.
  */
 
 export const beneficios = [
@@ -42,47 +42,4 @@ export const beneficios = [
     texto:
       "Conecte-se com uma marca que valoriza sua criatividade e acredita em parcerias de longo prazo.",
   },
-];
-
-export const nichos = [
-  "Arquitetura",
-  "Decoração e interiores",
-  "Reforma e obra",
-  "Casa e organização",
-  "DIY e faça você mesmo",
-  "Construção civil",
-  "Paisagismo",
-  "Design de móveis e marcenaria",
-  "Lifestyle",
-  "Família e maternidade",
-  "Imóveis e mercado imobiliário",
-  "Outros",
-];
-
-export const faixasDeSeguidores = [
-  "Até 5 mil",
-  "5 mil a 10 mil",
-  "10 mil a 50 mil",
-  "50 mil a 100 mil",
-  "100 mil a 500 mil",
-  "Acima de 500 mil",
-];
-
-export const generos = ["Feminino", "Masculino", "Outro", "Prefiro não informar"];
-
-export const estados = [
-  "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS",
-  "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC",
-  "SE", "SP", "TO",
-];
-
-export const simNao = ["Sim", "Não"];
-
-export const tiposDeConteudo = [
-  "Fotos e carrosséis",
-  "Reels e vídeos curtos",
-  "Vídeos longos / YouTube",
-  "Stories",
-  "Blog ou newsletter",
-  "Projetos autorais (arquitetura, design)",
 ];
