@@ -160,8 +160,9 @@ const Creators = () => {
                 Quero ser MONO Creator
               </h2>
               <p className="font-body text-base text-muted-foreground leading-relaxed max-w-xl">
-                Preencha o cadastro abaixo. Leva alguns minutos e, a partir dele, nosso time
-                analisa o seu perfil e entra em contato.
+                São dois passos rápidos: conte para a gente sobre o seu conteúdo e depois
+                crie sua conta na Inbazz, a plataforma do programa. Nosso time analisa o seu
+                perfil e entra em contato.
               </p>
             </div>
           </AnimateOnScroll>

@@ -5,12 +5,50 @@
  * o formulário é longo e um CPF aceito errado só aparece depois, na planilha.
  */
 
-/** Para onde o cadastro é enviado. O TI preenche quando o destino existir
- *  (endpoint da Inbazz, webhook do GoHighLevel, Apps Script — tanto faz, desde
- *  que aceite um POST JSON). Enquanto estiver vazio, `enviarCadastro` apenas
- *  registra o payload no console e devolve sucesso, para a página poder ser
- *  demonstrada de ponta a ponta sem back-end. */
-export const CREATORS_ENDPOINT = import.meta.env?.VITE_CREATORS_ENDPOINT ?? "";
+/** Para onde o cadastro é enviado. Publicado, é a função `api/creators.ts` da
+ *  própria Vercel, que grava no Supabase. No `npm run dev` essa função não
+ *  existe, então o padrão fica vazio e `enviarCadastro` só registra o payload
+ *  no console — dá para testar a página inteira sem banco. A variável
+ *  `VITE_CREATORS_ENDPOINT` sobrepõe os dois casos. */
+export const CREATORS_ENDPOINT =
+  import.meta.env?.VITE_CREATORS_ENDPOINT ?? (import.meta.env?.PROD ? "/api/creators" : "");
+
+/** Loja da MONO na Inbazz. É o que faz o creator cair na comunidade certa
+ *  depois de criar a conta — não é segredo, é o mesmo link do convite. */
+export const INBAZZ_STORE_ID =
+  import.meta.env?.VITE_INBAZZ_STORE_ID ?? "4fa2c7a0-3132-495d-9b34-bd9ee3232d65";
+
+/** A conta, a confirmação de e-mail e o pedido de entrada na comunidade são da
+ *  Inbazz: a API de marcas não cria creator, então o cadastro termina lá. */
+export const INBAZZ_CADASTRO_URL = `https://creators.inbazz.com.br/login?storeId=${INBAZZ_STORE_ID}`;
+
+/** Quem já mandou a candidatura e recarrega a página volta direto para o passo
+ *  da Inbazz, em vez de ver o formulário vazio e achar que perdeu tudo. */
+const CHAVE_CANDIDATURA = "mono-creators:candidatura";
+
+export interface Candidatura {
+  email: string;
+  /** Handle sem @. Pode faltar em candidatura guardada por uma versão antiga. */
+  instagram?: string;
+}
+
+export const lerCandidatura = (): Candidatura | null => {
+  try {
+    const bruto = sessionStorage.getItem(CHAVE_CANDIDATURA);
+    return bruto ? (JSON.parse(bruto) as Candidatura) : null;
+  } catch {
+    return null;
+  }
+};
+
+export const guardarCandidatura = (candidatura: Candidatura | null) => {
+  try {
+    if (candidatura) sessionStorage.setItem(CHAVE_CANDIDATURA, JSON.stringify(candidatura));
+    else sessionStorage.removeItem(CHAVE_CANDIDATURA);
+  } catch {
+    // Aba anônima ou storage bloqueado: só perde o atalho do recarregamento.
+  }
+};
 
 export const somenteDigitos = (valor: string) => valor.replace(/\D/g, "");
 
@@ -83,11 +121,7 @@ export const parseDataBR = (valor: string) => {
   const mes = Number(m[2]);
   const ano = Number(m[3]);
   const data = new Date(ano, mes - 1, dia);
-  if (
-    data.getFullYear() !== ano ||
-    data.getMonth() !== mes - 1 ||
-    data.getDate() !== dia
-  ) {
+  if (data.getFullYear() !== ano || data.getMonth() !== mes - 1 || data.getDate() !== dia) {
     return null;
   }
   return data;
@@ -150,7 +184,11 @@ export const enviarCadastro = async (dados: Record<string, unknown>) => {
   const resposta = await fetch(CREATORS_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...dados, origem: "site/creators", enviadoEm: new Date().toISOString() }),
+    body: JSON.stringify({
+      ...dados,
+      origem: "site/creators",
+      enviadoEm: new Date().toISOString(),
+    }),
   });
   if (!resposta.ok) {
     throw new Error(`Falha ao enviar o cadastro (${resposta.status})`);
