@@ -22,6 +22,7 @@ o design system da MONO (fontes PP Right Gothic / PP Neue York, paleta `mono-*`,
 | --- | --- |
 | `src/pages/Creators.tsx` | A página: hero, manifesto, benefícios, convite e a seção de inscrição. |
 | `src/components/creators/HeroCreators.tsx` | O hero: slideshow automático de 5 ambientes, sem controles, com parallax. |
+| `src/components/creators/CadastroInbazz.tsx` | Passo a passo da inscrição e o modal com o cadastro da Inbazz. |
 | `src/data/creators.ts` | Conteúdo editável: os benefícios. |
 | `src/lib/creators.ts` | O link de cadastro da Inbazz (`INBAZZ_STORE_ID`). |
 
@@ -30,23 +31,25 @@ ajusta sozinha.
 
 ## A inscrição
 
-A landing não tem formulário. O botão **Quero ser MONO Creator** leva direto a
-`creators.inbazz.com.br/login?storeId=…`, o link de convite da comunidade da
-MONO na Inbazz. Lá o creator toca em *Cadastre-se*, cria a conta (nome, CPF,
-endereço, Instagram, confirmação por e-mail) e o pedido de entrada na
-comunidade aparece para o time aprovar no painel da Inbazz.
+A landing não tem formulário: a conta é criada na Inbazz, que não tem API para
+a marca criar creator. A seção de inscrição mostra um passo a passo (tocar em
+*Cadastre-se*, preencher os dados e confirmar o código do e-mail) e o botão
+**Quero ser MONO Creator** abre `creators.inbazz.com.br/login?storeId=…` — o
+link de convite da comunidade da MONO — num modal dentro da página. Há sempre
+um link para abrir em outra aba.
 
-A Inbazz não tem API para a marca criar creator, por isso o cadastro precisa
-acontecer lá. O link abre na tela de login, não na de cadastro — o texto da
-seção avisa para tocar em *Cadastre-se*.
+O app da Inbazz demora alguns segundos para iniciar, então o iframe começa a
+carregar escondido quando o visitante chega perto da seção, e o modal abre
+pronto. O pedido de entrada na comunidade aparece para o time aprovar no
+painel da Inbazz.
 
 `VITE_INBAZZ_STORE_ID` (opcional, já existe na Vercel) troca a loja sem commit.
 
 **Legado:** entre 9/10/2026 e a remoção do formulário, a página gravou
 candidaturas no Supabase (projeto **Mono Creators**, tabela
 `creators_candidaturas`, estrutura em `supabase/migrations/`). O projeto e os
-dados continuam lá; as variáveis `SUPABASE_URL` e `SUPABASE_SECRET_KEY` na
-Vercel não são mais usadas.
+dados continuam lá; as variáveis `SUPABASE_URL` e `SUPABASE_SECRET_KEY` foram
+apagadas da Vercel.
 
 ## Pendências
 

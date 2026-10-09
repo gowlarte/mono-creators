@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BadgePercent,
   BarChart3,
   Megaphone,
@@ -13,8 +12,8 @@ import Navbar from "@/components/Navbar";
 import MonoFooter from "@/components/MonoFooter";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HeroCreators from "@/components/creators/HeroCreators";
+import CadastroInbazz from "@/components/creators/CadastroInbazz";
 import { beneficios } from "@/data/creators";
-import { INBAZZ_CADASTRO_URL } from "@/lib/creators";
 import ambienteImg from "@/assets/produtos/liso-amb-02.jpg";
 
 /**
@@ -161,19 +160,14 @@ const Creators = () => {
                 Quero ser MONO Creator
               </h2>
               <p className="font-body text-base text-muted-foreground leading-relaxed max-w-xl">
-                A inscrição é feita na Inbazz, a plataforma do programa. Toque em{" "}
-                <strong className="font-medium text-foreground">Cadastre-se</strong>, crie sua
-                conta e seu pedido chega para o nosso time.
+                A inscrição é feita na Inbazz, a plataforma do programa, onde você vai acompanhar
+                cupom, vendas e comissões. Funciona assim:
               </p>
-              <a
-                href={INBAZZ_CADASTRO_URL}
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm font-body uppercase tracking-[0.15em] text-white px-10 py-4 rounded transition-opacity hover:opacity-85"
-                style={{ backgroundColor: "hsl(27 55% 50%)" }}
-              >
-                Quero ser MONO Creator <ArrowRight size={16} />
-              </a>
             </div>
           </AnimateOnScroll>
+          <div className="mt-10">
+            <CadastroInbazz />
+          </div>
         </div>
       </section>
 
