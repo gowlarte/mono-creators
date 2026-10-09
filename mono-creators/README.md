@@ -83,9 +83,9 @@ navegador ──POST──▶ /api/creators (função da Vercel) ──secret ke
 
 | Variável | Onde | Obrigatória | Observação |
 | --- | --- | --- | --- |
-| `SUPABASE_URL` | servidor | sim | Criada pela integração Vercel + Supabase. |
-| `SUPABASE_SECRET_KEY` | servidor | sim | `sb_secret_…`. Criada pela integração. Nunca com prefixo `VITE_`. |
-| `VITE_INBAZZ_STORE_ID` | navegador | não | Já tem o valor da MONO no código. |
+| `SUPABASE_URL` | servidor | sim | `https://lnhrlzythenvbwnxecvu.supabase.co` (projeto Supabase **Mono Creators**, org Lesco Free). |
+| `SUPABASE_SECRET_KEY` | servidor | sim | `sb_secret_…`, sensível, só Production e Preview. Nunca com prefixo `VITE_`. |
+| `VITE_INBAZZ_STORE_ID` | navegador | não | Mesmo valor que já está no código; serve para trocar sem commit. |
 | `VITE_CREATORS_ENDPOINT` | navegador | não | Padrão: `/api/creators` publicado; vazio no `npm run dev`. |
 
 Os nomes antigos `SUPABASE_SERVICE_ROLE_KEY` e `NEXT_PUBLIC_SUPABASE_URL`
@@ -96,7 +96,9 @@ console. Para testar com o banco localmente, use `vercel dev`.
 
 ## Pendências
 
-- [ ] Vincular o Supabase na Vercel e aplicar a migração de `supabase/migrations/`.
+- [x] Tabela criada no projeto Supabase (aplicada com `supabase db query`, então não
+      aparece no histórico de migrações do `db push`).
+- [ ] Colar a secret key em `SUPABASE_SECRET_KEY` na Vercel e fazer redeploy.
 - [ ] Fazer um cadastro real de ponta a ponta pelo modal e confirmar que o pedido
       chega na comunidade da MONO no painel da Inbazz.
 - [ ] Página ou PDF com os **termos do programa** — o aceite hoje não aponta para

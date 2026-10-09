@@ -43,8 +43,15 @@ const candidaturaSchema = z.object({
 const json = (status: number, corpo: Record<string, unknown>) =>
   Response.json(corpo, { status, headers: { "Cache-Control": "no-store" } });
 
+/** As variáveis nascem na Vercel com um valor provisório até alguém colar o
+ *  real; com ele, o createClient lançaria erro em vez de responder. */
+const configurado =
+  /^https:\/\/\S+$/.test(SUPABASE_URL) &&
+  // sb_secret_… é a secret key nova; eyJ… é a service role antiga (JWT).
+  /^(sb_secret_|eyJ)/.test(SUPABASE_SECRET_KEY);
+
 export async function POST(request: Request) {
-  if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
+  if (!configurado) {
     console.error("[api/creators] SUPABASE_URL ou SUPABASE_SECRET_KEY não configurados.");
     return json(500, { erro: "Serviço indisponível." });
   }
