@@ -21,10 +21,20 @@ import { INBAZZ_CADASTRO_URL } from "@/lib/creators";
  * desta seção — não na abertura da landing, para quem só passa pelo topo não
  * baixar o app inteiro — e o modal abre pronto no clique.
  *
+ * A tela de login da Inbazz não rola: ela se encaixa na altura do iframe e,
+ * abaixo de uns 720px, o "Cadastre-se" fica cortado e inalcançável (notebook
+ * com tela baixa ou zoom do Windows). Rolar o modal não resolve: a roda do
+ * mouse sobre o iframe fica com o app da Inbazz. Então, quando a área é mais
+ * baixa que isso, o iframe é desenhado com 720px e reduzido para caber — fica
+ * menor, mas inteiro e clicável.
+ *
  * O modal é feito à mão, sem o Dialog do Radix: montado e fechado, o Radix
  * continua tratando a página como modal e põe `pointer-events: none` no body
  * — nada mais é clicável, nem o botão que abriria o modal.
  */
+/** Altura mínima em que a tela de login da Inbazz aparece inteira. */
+const ALTURA_MINIMA_INBAZZ = 720;
+
 const roteiro = [
   <>
     Na tela da Inbazz, toque em <strong className="font-medium text-foreground">Cadastre-se</strong>
@@ -41,6 +51,23 @@ const CadastroInbazz = () => {
   const secao = useRef<HTMLDivElement>(null);
   const botaoAbrir = useRef<HTMLButtonElement>(null);
   const botaoFechar = useRef<HTMLButtonElement>(null);
+  const areaIframe = useRef<HTMLDivElement>(null);
+  const [area, setArea] = useState({ largura: 0, altura: 0 });
+
+  // Mede a área do iframe para decidir se a Inbazz precisa ser reduzida.
+  useEffect(() => {
+    const alvo = areaIframe.current;
+    if (!alvo || !("ResizeObserver" in window)) return;
+    const observador = new ResizeObserver(([entrada]) => {
+      const { width, height } = entrada.contentRect;
+      setArea({ largura: width, altura: height });
+    });
+    observador.observe(alvo);
+    return () => observador.disconnect();
+  }, [montado]);
+
+  const escala =
+    area.altura > 0 && area.altura < ALTURA_MINIMA_INBAZZ ? area.altura / ALTURA_MINIMA_INBAZZ : 1;
 
   // Monta o iframe quando a seção chega perto da tela.
   useEffect(() => {
@@ -174,7 +201,7 @@ const CadastroInbazz = () => {
                   <X size={18} />
                 </button>
               </div>
-              <div className="relative flex-1 bg-white">
+              <div ref={areaIframe} className="relative flex-1 overflow-hidden bg-white">
                 {carregando && (
                   <div className="absolute inset-0 flex items-center justify-center gap-2 font-body text-sm text-muted-foreground">
                     <Loader2 size={16} className="animate-spin" /> Abrindo a Inbazz…
@@ -184,7 +211,16 @@ const CadastroInbazz = () => {
                   src={INBAZZ_CADASTRO_URL}
                   title="Cadastro na Inbazz"
                   onLoad={() => setCarregando(false)}
-                  className="absolute inset-0 w-full h-full border-0"
+                  className="absolute top-0 left-0 border-0 origin-top-left"
+                  style={
+                    escala < 1
+                      ? {
+                          width: `${area.largura / escala}px`,
+                          height: `${ALTURA_MINIMA_INBAZZ}px`,
+                          transform: `scale(${escala})`,
+                        }
+                      : { width: "100%", height: "100%" }
+                  }
                 />
               </div>
             </div>
